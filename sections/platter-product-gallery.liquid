@@ -22,23 +22,27 @@
   });
 </script>
 
-<div class="container w-full max-w-none">
-  <h2 class="text-2xl font-bold my-4">{{ section.settings.heading }}</h2>
+<section class="container w-full max-w-none">
+  <header>
+    <h2 class="text-2xl font-bold my-4">{{ section.settings.heading }}</h2>
+  </header>
   <div class="grid grid-cols-2 gap-4 md:flex md:overflow-x-auto md:gap-4 md:space-x-4">
     {% for block in section.blocks %}
-    <div class="product-card bg-white shadow-lg rounded-lg max-w-sm md:w-72 flex-shrink-0 {% if forloop.index > 4 %}hidden md:block{% endif %}">
-      <img src="{{ block.settings.product.featured_image | img_url: '300x300' }}" alt="{{ block.settings.product.title }}" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="text-lg font-medium">{{ block.settings.product.title }}</h3>
-        <p class="text-gray-500">{{ block.settings.product.price | money }}</p>
-        <button class="bg-blue-500 text-white px-4 py-2 mt-3 rounded">{{ block.settings.button_text }}</button>
-      </div>
-    </div>
+      <article class="product-card bg-white shadow-lg rounded-lg max-w-sm md:w-72 flex-shrink-0 {% if forloop.index > 4 %}hidden md:block{% endif %}">
+        <img src="{{ block.settings.product.featured_image | img_url: '300x300' }}" alt="{{ block.settings.product.title }}" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-medium">{{ block.settings.product.title }}</h3>
+          <p class="text-gray-500">{{ block.settings.product.price | money }}</p>
+          <button class="bg-blue-500 text-white px-4 py-2 mt-3 rounded">{{ block.settings.button_text }}</button>
+        </div>
+      </article>
     {% endfor %}
   </div>
-  <button id="show-more" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 md:hidden">Show More</button>
-  <button id="show-less" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 hidden md:hidden">Show Less</button>
-</div>
+  <footer>
+    <button id="show-more" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 md:hidden">Show More</button>
+    <button id="show-less" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 hidden md:hidden">Show Less</button>
+  </footer>
+</section>
 
 {% schema %}
 {
