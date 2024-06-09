@@ -26,7 +26,7 @@
   <h2 class="text-2xl font-bold my-4">{{ section.settings.heading }}</h2>
   <div class="grid grid-cols-2 gap-4 md:flex md:overflow-x-auto md:gap-4 md:space-x-4">
     {% for block in section.blocks %}
-    <div class="product-card bg-white shadow-lg rounded-lg max-w-sm flex-shrink-0 {% if forloop.index > 4 %}hidden md:block{% endif %}">
+    <div class="product-card bg-white shadow-lg rounded-lg max-w-sm md:w-72 flex-shrink-0 {% if forloop.index > 4 %}hidden md:block{% endif %}">
       <img src="{{ block.settings.product.featured_image | img_url: '300x300' }}" alt="{{ block.settings.product.title }}" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="text-lg font-medium">{{ block.settings.product.title }}</h3>
