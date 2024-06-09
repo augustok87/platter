@@ -24,9 +24,9 @@
 
 <div class="container mx-auto px-4">
   <h2 class="text-2xl font-bold my-4">{{ section.settings.heading }}</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  <div class="grid grid-cols-2 gap-4 md:flex md:overflow-x-auto md:gap-4 md:space-x-4">
     {% for block in section.blocks %}
-    <div class="product-card bg-white shadow-lg rounded-lg max-w-sm {% if forloop.index > 4 %}hidden{% endif %}">
+    <div class="product-card bg-white shadow-lg rounded-lg max-w-sm flex-shrink-0 {% if forloop.index > 4 %}hidden md:block{% endif %}">
       <img src="{{ block.settings.product.featured_image | img_url: '300x300' }}" alt="{{ block.settings.product.title }}" class="w-full h-48 object-cover">
       <div class="p-4">
         <h3 class="text-lg font-medium">{{ block.settings.product.title }}</h3>
@@ -36,47 +36,45 @@
     </div>
     {% endfor %}
   </div>
-  <button id="show-more" class="bg-gray-800 text-white px-6 py-2 rounded mt-4">Show More</button>
-  <button id="show-less" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 hidden">Show Less</button>
+  <button id="show-more" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 md:hidden">Show More</button>
+  <button id="show-less" class="bg-gray-800 text-white px-6 py-2 rounded mt-4 hidden md:hidden">Show Less</button>
 </div>
 
-  
-
-  {% schema %}
-  {
-    "name": "Platter Best Sellers",
-    "settings": [
-      {
-        "type": "text",
-        "id": "heading",
-        "label": "Section Heading",
-        "default": "Best Sellers"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "product",
-        "name": "Product Card",
-        "settings": [
-          {
-            "type": "product",
-            "id": "product",
-            "label": "Product"
-          },
-          {
-            "type": "text",
-            "id": "button_text",
-            "label": "Button Text",
-            "default": "Buy Now"
-          }
-        ],
-        "limit": 10
-      }
-    ],
-    "presets": [
-      {
-        "name": "Platter Best Sellers"
-      }
-    ]
-  }
-  {% endschema %}
+{% schema %}
+{
+  "name": "Platter Best Sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Best Sellers"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Buy Now"
+        }
+      ],
+      "limit": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Platter Best Sellers"
+    }
+  ]
+}
+{% endschema %}
