@@ -1,0 +1,74 @@
+
+  <style>
+    @import "https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css";
+  </style>
+  
+  
+  
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', function() {
+      const showMoreButton = document.getElementById('show-more');
+      showMoreButton.addEventListener('click', function() {
+        document.querySelectorAll('.hidden-card').forEach(card => {
+          card.classList.toggle('hidden');
+        });
+      });
+    });
+  </script>
+  
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold my-4">{{ section.settings.heading }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {% for block in section.blocks %}
+      <div class="product-card {% if forloop.index > 4 %}hidden hidden-card{% endif %}" style="max-width: 20rem;">
+        <img src="{{ block.settings.product.featured_image | img_url: '300x300' }}" alt="{{ block.settings.product.title }}" class="w-full">
+        <div class="p-4">
+          <h3 class="text-lg font-medium">{{ block.settings.product.title }}</h3>
+          <p class="text-gray-500">{{ block.settings.product.price | money }}</p>
+          <button class="bg-blue-500 text-white px-4 py-2 mt-3 rounded">{{ block.settings.button_text }}</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button id="show-more" class="bg-gray-800 text-white px-6 py-2 rounded mt-4">Show More</button>
+  </div>
+  
+
+  {% schema %}
+  {
+    "name": "Pl- Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Section Heading",
+        "default": "Best Sellers"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product Card",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text",
+            "default": "Buy Now"
+          }
+        ],
+        "limit": 10
+      }
+    ],
+    "presets": [
+      {
+        "name": "Pl- Featured Collection"
+      }
+    ]
+  }
+  {% endschema %}
